@@ -2,10 +2,10 @@
 
 ## Fact and Dimension Table
 
-####Dimension tables
+###Dimension tables
 Dimension tables have the information about each individual metric like customer information and product information as seprate tables.
 
-#### Fact tables
+### Fact tables
 
  A fact table is a table that stores the measurements, metrics, or facts related to a business operation. 
 Fact tables contain all the keys from the dimnesion table to make the complete sense of the data example a transaction table with customer id and product id with transaction date.
@@ -42,3 +42,10 @@ type 4
 more cleaner approach the main dimension table will have just an update on the table we will also have a history dimention table which has an update and an insert 
    
 
+## DataWarehouse vs DataLake vs Database
+A database is basically used to record transactions(OLTP) where as warehouse the datawarehouse for analytical (OLAP).Data comes into datawarehouses from multiple databasese usually though an ETL job.
+
+Datawarehouse is designed to just query large amount of data it wount have as amy as updtes as a typical databas
+
+### DataLake 
+Data lake is used to store structued unstructured files videos can store any type of data.
