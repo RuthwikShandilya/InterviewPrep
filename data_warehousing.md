@@ -49,3 +49,13 @@ Datawarehouse is designed to just query large amount of data it wount have as am
 
 ### DataLake 
 Data lake is used to store structued unstructured files videos can store any type of data.
+
+## Partition Pruning and Other Concepts 
+Spark has this done in Logical plan level
+Static Pruning 
+Without pruning the partition the read will happen first and then the filter will happen in Spark.
+With pruning then then the filter will apply first and then read.This is also called predicate pushdown
+
+Dynamic Pruning 
+When we are trying to join multiple tables and has a partition on one of the table the partition pruning applies on the other table to reduce the total scan on all the tables.
+It does an broadcase hash join on the fact table when the dimenson table is small
