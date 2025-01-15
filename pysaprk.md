@@ -212,3 +212,23 @@ df.show()
 
 # Example transformation: selecting specific columns
 df.select(col("name"), col("age")).show()
+
+from pyspark.sql import SparkSession
+
+# Initialize Spark session
+spark = SparkSession.builder.appName('WordCount').getOrCreate()
+
+# Load the text file into an RDD
+rdd = spark.sparkContext.textFile('your_text_file.txt')  # Replace with the path to your text file
+
+# Word count transformation
+word_counts = (rdd.flatMap(lambda line: line.split())  # Split each line into words
+               .map(lambda word: (word.lower(), 1))  # Convert to lowercase and create (word, 1) pair
+               .reduceByKey(lambda a, b: a + b))  # Count the occurrences of each word
+
+# Get the top 5 most frequent words, ordered by frequency (descending)
+top_5_words = word_counts.takeOrdered(5, key=lambda x: -x[1])  # Sort by count in descending order
+
+# Print the top 5 words and their counts
+for word, count in top_5_words:
+    print(f"{word}: {count}")
