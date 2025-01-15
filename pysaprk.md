@@ -185,3 +185,30 @@ top_n_products = (
 # Show the result
 top_n_products.show()
 ```
+
+from pyspark.sql import SparkSession
+from pyspark.sql.functions import col
+
+# Initialize a Spark session
+spark = SparkSession.builder.master("local").appName("JSONExample").getOrCreate()
+
+# Sample JSON data
+json_data = """
+[
+    {"name": "John", "age": 30, "city": "New York"},
+    {"name": "Jane", "age": 25, "city": "Los Angeles"},
+    {"name": "Mike", "age": 35, "city": "Chicago"}
+]
+"""
+
+# Create an RDD from the JSON string
+rdd = spark.sparkContext.parallelize([json_data])
+
+# Read the JSON string as a DataFrame
+df = spark.read.json(rdd)
+
+# Show the DataFrame
+df.show()
+
+# Example transformation: selecting specific columns
+df.select(col("name"), col("age")).show()
