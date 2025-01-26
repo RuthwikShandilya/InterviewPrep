@@ -1,0 +1,31 @@
+# AWS FUndementals 
+#### Types of Data
+1. Structured Data - -easily queriable,organized columns,cleanup already(psql,oracle,csv and execel if there area structured)
+2. Unstructured Data - doesnt have a predefined schema,raw text files,videos,audio,emails
+3. Semi Structured data - xml and jsons
+
+#### Properties of Data 
+1. Volume - size of data, 
+2. Velocity - speed at which new data is generated collected procossesd(batch vs streaming)
+3. variety  - types of data, strututed vs semi ,source of data ,format of data
+
+### Data Warehouse vs Data Lake 
+
+#### Data warehouse (Extract Trsanform and then load to Data warehouse)
+A centralized repository optimized for analysis where data from different sources is stored in strutured format 
+designed for analysis 
+optimized for read heavy operations 
+
+Examples : Amazon Redshift,Google Bigquery ,Azure SQL Data warehouse 
+
+#### Data Lake (Extract Load and then transform when we need to )
+do not preprocess just store all the data in lake house 
+
+Example : Amazon s3,HDFS
+
+Which to choose  : 
+data warehouse : when you have strtured data and want to use ti for analytics 
+data lakes : need raw data for machine learning 
+
+
+### Data Lakehouse : Combingin Datawarehouse and Datalake
