@@ -79,51 +79,196 @@ print(areAnagrams2(str,str2))
 ```
 3. Find all possible palindromic substrings in a given string.  
 ```python
-# Your solution here
+
+str="racecar"
+
+def isPalindrome(str):
+    if(str == str[::-1]):
+        return str
+    else:
+        None
+i=0
+j=0
+list_palindrome=set()
+while i < len(str):
+    j=i+1
+    while j < len(str)+1:
+        list_palindrome.add(isPalindrome(str[i:j]))
+        j+=1
+    i+=1
+print(list_palindrome)
 ```
 4. Write a function to find the longest palindromic substring in a given string.  
 ```python
-# Your solution here
+str="racecar"
+
+def isPalindrome(str):
+    if(str == str[::-1]):
+        return str
+    else:
+        None
+max_palindrome_str=""
+i=0
+j=0
+list_palindrome=set()
+while i < len(str):
+    j=i+1
+    while j < len(str)+1:
+        if isPalindrome(str[i:j]):
+            if len(max_palindrome_str) < j-i:
+                max_palindrome_str=str[i:j]
+        j+=1
+    i+=1
+print(max_palindrome_str)
 ```
 5. Implement a function that compresses a string using character counts (e.g., `"aaabbc"` → `"a3b2c1"`).  
 ```python
-# Your solution here
+from collections import Counter
+my_str = "aaabbc"
+
+# Using Counter to count character frequencies
+char_count = Counter(my_str)
+
+# Creating the new string with character and their frequencies
+str_new = ""
+for ele, val in char_count.items():
+    str_new += ele + str(val)  # Use the built-in str() function here
+
+print(str_new)
+    
 ```
 6. Given two strings, find the minimum window substring from the first that contains all characters of the second.  
 ```python
-# Your solution here
+from collections import Counter
+
+str1="uhelllo"
+str2="hello"
+
+min_str_len=float('inf')
+
+
+def minWindowSubString(str1,str2):
+    i=0
+    min_str=""
+    while i < len(str1):
+        j=i+1
+        while j <len(str1)+1:
+            if(Counter(str1[i:j]) >= Counter(str2)):
+                if(len(str1[i:j]) < min_str_len):
+                    min_str=str1[i:j]
+            j+=1
+        i+=1
+    return min_str
+            
+                
+
+    
+print(minWindowSubString(str1,str2))
 ```
-7. Implement a function to check if a string follows a given pattern (like regex matching without using regex).  
-```python
-# Your solution here
 ```
 8. Find the most frequently occurring word in a paragraph, ignoring common words like "the", "is", etc.  
 ```python
-# Your solution here
+#Find the most frequently occurring word in a paragraph, ignoring common words like "the", "is", etc
+
+str="""I am preparing for the python course.Python course is the best course and is used for data enalytics and python and Python and the is our out from preparing"""
+
+ignore_words=["the","I","and","is"]
+list_para=str.split(" ")
+para_word_count={}
+
+for ele in list_para:
+    para_word_count[ele]=para_word_count.get(ele,0)+1
+    
+print(para_word_count)
+
+max_freq=0
+max_freq_Word=""
+
+for key in para_word_count.keys():
+    if key not in ignore_words:
+        if para_word_count.get(key) > max_freq:
+            max_freq_Word=key
+            max_freq=para_word_count.get(key)
+            
+        else:
+            None
+    else:
+        None
+print(max_freq_Word)
+    
 ```
 9. Reverse the order of words in a string without using `split()`.  
 ```python
-# Your solution here
+str_para="Hi I am python compiler"
+
+result=""
+word=""
+for i in range(len(str_para)-1,-1,-1):
+    if str_para[i] !=" ":
+        word=str_para[i]+word
+    else:
+            result=result+word+" "
+            word=""
+if word:
+    result=result+word
+print(result)
 ```
 10. Check if one string is a rotation of another (e.g., `"erbottlewat"` is a rotation of `"waterbottle"`).  
 ```python
-# Your solution here
+str1="erbottlewat"
+str2="waterbottle"
+
+if str2 in (str1 +str1):
+    print(True)
+else:
+    print(False)
+    
+    
 ```
 11. Remove duplicate characters from a string while preserving the order.  
 ```python
-# Your solution here
+str="hellooooetg"
+sub_str=""
+
+for ele in str:
+    if ele not in sub_str:
+        sub_str+=ele
+print(sub_str)
+        
 ```
-12. Implement a function that finds the **edit distance** (Levenshtein distance) between two strings.  
-```python
-# Your solution here
-```
+
 13. Given a string containing multiple numbers, extract the largest numerical value.  
 ```python
-# Your solution here
+import re
+
+str="my current salry for month 29 is 32 and 45 and 1234 5"
+
+numbers=re.findall(r'\d+',str)
+
+print(numbers)
+int_numers=[]
+for ele in numbers:
+    int_numers.append(int(ele))
+print(sorted(int_numers)[-1])
 ```
 14. Given a string with nested brackets, check if they are properly balanced (`{[()]}` is valid, `{[(])}` is not).  
 ```python
-# Your solution here
+bracket_map = {')': '(', '}': '{', ']': '['}
+stack=[]
+str="{}[]()[["
+ 
+for ele in str:
+    if ele in bracket_map.values():
+        stack.append(ele)
+    if ele in bracket_map.keys():
+        if stack.pop() != bracket_map[ele]:
+            break
+print(stack)
+if len(stack) ==0:
+    print("valid")
+else:
+    print("invalid")
+     
 ```
 15. Implement a function to group **isomorphic strings** together.
 ```python
