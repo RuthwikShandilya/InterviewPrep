@@ -8,7 +8,53 @@ This document contains 50 advanced Python interview questions covering **strings
 
 1. Given a string, find the longest substring without repeating characters.  
 ```python
-# Your solution here
+# #Using pointers 
+# str="strhellohi"
+# list_str=list(str)
+# i=0
+# longest_sub_string=""
+# while i <len(list(str)):
+#     new_str_list=[]
+#     j=i
+#     while j < len(list_str): 
+#         if(list_str[j] in new_str_list):
+#             break
+#         new_str_list.append(list_str[j])
+#         j+=1
+
+#     if len(new_str_list) > len(longest_sub_string):
+#         longest_sub_string=''.join(new_str_list)
+#     i+=1
+# print(longest_sub_string)
+
+
+#Using set 
+
+str="strhellohi"
+
+char_set=set()
+i=0
+j=0
+max_str=""
+
+
+while j < len(str):
+    print(f"i is {str[i]}")
+    if str[j] not in char_set:
+        char_set.add(str[j])
+        j+=1
+        
+        if j-i > len(max_str):
+            print(f"i is {i} j is {j}")
+            max_str=str[i:j]
+            print(max_str)
+    
+    else:
+        print(char_set)
+        char_set.remove(str[i])
+        i+=1
+print(max_str)
+
 ```
 2. Implement a function to check if two strings are anagrams of each other.  
 ```python
