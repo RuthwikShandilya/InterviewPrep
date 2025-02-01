@@ -58,7 +58,24 @@ print(max_str)
 ```
 2. Implement a function to check if two strings are anagrams of each other.  
 ```python
-# Your solution here
+from collections import Counter
+
+str="hello"
+str1="listen"
+str2="silent"
+def areAnagrams(str1,str2):
+    if(sorted(str1)==sorted(str2)):
+        return True
+    else:
+        return False
+print(areAnagrams(str,str2))
+
+def areAnagrams2(str1,str2):
+    if(Counter(str2)==Counter(str1)):
+        return True
+    else:
+        return False
+print(areAnagrams2(str,str2))
 ```
 3. Find all possible palindromic substrings in a given string.  
 ```python
