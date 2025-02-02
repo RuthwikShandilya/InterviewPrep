@@ -29,3 +29,36 @@ data lakes : need raw data for machine learning
 
 
 ### Data Lakehouse : Combingin Datawarehouse and Datalake
+
+# Data Lineage
+### Spline Agent
+it store it in graph data base called Amazon Neptune
+
+
+Schema Evolution:
+
+Schema GLue REgistry has backward compability 
+### Sage Maker
+
+
+Data base optimizations : 
+Adding indexes 
+Paritioning 
+Compression : use better file formats ,also compression (GZIP,LZOP also talk about these)
+
+Data Sampling techniqies
+1. Random Sampling 
+2. Stratified Sampling 
+3. Systemic Sampling (every thrid record )
+
+Data Skewing 
+
+temporal skew old data has less data and new data bassed on same partition could be huge
+
+How do you partition :
+
+1. Adaptive Partitioning 
+2. Salting 
+3. Regular Repartition (not recommended)
+4. Sampling 
+5. Custom parititiong 
