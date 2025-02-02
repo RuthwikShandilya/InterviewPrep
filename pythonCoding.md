@@ -120,6 +120,35 @@ while i < len(str):
         j+=1
     i+=1
 print(max_palindrome_str)
+
+
+#Find the longest palindrome substring in a given string.
+
+
+str_val="sstttts"
+max_palindrome_len=0
+def isPalindrome(str_val):
+    if str_val == str_val[::-1]:
+        return True
+    else:
+        return False
+        
+i=0
+while i <len(str_val):
+    j=len(str_val)
+    while j> i:
+        if isPalindrome(str_val[i:j]):
+            max_palindrome_len=j-i
+        break
+        j=j-1
+    if isPalindrome(str_val[i:j]):
+        break
+    i=i+1
+            
+    
+        
+print(max_palindrome_len)
+
 ```
 5. Implement a function that compresses a string using character counts (e.g., `"aaabbc"` → `"a3b2c1"`).  
 ```python
