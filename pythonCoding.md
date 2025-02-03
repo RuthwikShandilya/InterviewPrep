@@ -1,5 +1,11 @@
 # Advanced Python Interview Questions
 
+## Python Decorators 
+
+
+
+
+
 This document contains 50 advanced Python interview questions covering **strings, lists, and dictionaries**. Mastering these will help you confidently tackle any Python coding interview.
 
 ---
