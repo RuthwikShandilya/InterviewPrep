@@ -62,3 +62,61 @@ How do you partition :
 3. Regular Repartition (not recommended)
 4. Sampling 
 5. Custom parititiong 
+
+## AWs S3
+1. s3 bucket names are unique across globe 
+Naming Conventions : 
+no uppercase no underscores no ip must start with lower case  must not start with xn must not end with s3 s3alias
+key is basciclly the full path of the file without the s3b bucekt name 
+example : s3:<<bucketname>>/folder1/subfolder1/myfile.txt
+here the key is /folder1/subfolder1/myfile.txt
+value is the content of the file
+max size is 5TB 
+if each file is more than 5gb then use multi-part upload to upload files
+
+
+Amazon s3 Security 
+1. User based 
+iam policies : which specific user should be allowed from IAM 
+2. Resource Based :
+bucket wide policies 
+Object ACLs(Access Control Lists)
+Bucket ACLs()
+3. Encrpty objects on s3 using encryption keys 
+
+S3 JSON Example :
+there is this policy genertor in aws console we can use to generate policies
+
+
+### S3 versioning 
+
+Use to protect from unintended deletes and also we can roll back to a version 
+
+
+this is on a bucket level
+
+when ever we delete files on versionsing basially it just adds delete market to the file 
+
+how to restore files of deleted files is you delete the delete marker
+
+### S3 Replication 
+also have to enable versioning in both source and target buckets
+By default delete markers are not replicated by this can be changed in replication rule
+also if you delete a source object it is not replicated in the target bucket 
+
+has two things CRR(Cross region replication) and SRR(Same Region Replication)
+
+### S3 Storage Classes
+1. Amazon S3 Standard - General Purpose 
+2. Amazon S3 Standard - Infrequent Access(IA)
+3. Amazon S3 One Zone - Infrequent Access
+4. Amazon S3 Glacier Instant Retrival 
+5. Amazon S3 Glacier Flexible Retrival 
+6. Amazon S3 Glacier Deep dive 
+7. Amazon S3 Intelligent Tiering
+
+Mainly depends on two things Durability and Availability
+Durability : Highly Durable (99.9(11 times))
+Availablility -  depends on storage classe
+
+<<add print screen of s3 durablity and availability classe>>
