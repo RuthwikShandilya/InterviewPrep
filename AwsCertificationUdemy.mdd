@@ -116,7 +116,112 @@ has two things CRR(Cross region replication) and SRR(Same Region Replication)
 7. Amazon S3 Intelligent Tiering
 
 Mainly depends on two things Durability and Availability
+
+
 Durability : Highly Durable (99.9(11 times))
 Availablility -  depends on storage classe
 
 <<add print screen of s3 durablity and availability classe>>
+
+
+
+## S3 Storage 
+
+### Dynamo DB 
+No SQL Databases 
+Scale horizontally can have more instances 
+Millions of requests per second
+each item can have 400kb of data 
+
+
+other examples mongodb 
+
+
+
+Primary keys 
+just partition key 
+In dynamodb partition key must be unique to each item
+
+partition key and sort key make the primary key 
+Example : (User_id,game_id) PK,Score ,Result
+
+Creating Dynamo Db table :
+
+Select parition key 
+select table class (DynamoDb STandard or DynamoDB Standard IA(Infrequently Accessed))
+
+Two modes here 
+Read and Write Capacity :
+Provisioned Mode(Default)
+On DEmand Mode 
+expensive than provisioned mod
+read/writes automatically scale
+
+Burst Capacity temorarily increase read and write capacity 
+if the burst capacity exceeds then "provisionedthroughputexceededExecption" will come then we have to retry this is called "exponential backoff"
+
+Number of WCU needed = number of times we write per second * CEIL(itemsize)/1KB
+here 1 kb is the limit of write
+
+Strongly Consistent Read and Evenntually Consistent Read:
+1 RCU represents one strongly consistent read or two Eventually consistent read per second for an item of 4 KB
+Number of RCU needed = Strongly Consistent Read * (size /4)
+or 
+Eventlually Consistent /2 * (size/4)
+Eventually Consistent read is replica dindnt happen yet so we may get stale data
+
+always round up to nearest 4kB
+Strongly Consistent read(consues twice the RCU) we dont get state data and we dont get stale data
+
+on demand is 2.5 times more expensive than provisioned
+
+### Dynamo Db Paritions 
+
+
+### Dynamo DB API Calls 
+
+PutItem : create or update all attributes
+UpdateItem : update attributes 
+ConditionalWrites: 
+GetItem: projection expression retirve only few attributes 
+
+Query :
+Conditional expression : >=,<=,between,begins
+Filter Expression : use only with non key attributes
+
+max of 1MB and for bigger number of items use pagination
+
+DeleteItem: based on filter conditions
+DeleteTable:
+
+BatchWriteItem:
+upto 25 putItem or delete in one call
+upto 16MB written or upto 400kb per item
+canntor updateItem
+
+BatchGetItem:
+upto 100items or 16MB of Data
+ if failed use exponentialbackoff or retry or increase RCU
+projection is selecting only few columns on the index
+
+#### Dynamo DB PartiQL
+Cannot do joins 
+#### DYnamo DB Indexes :
+
+LSI(Local Secondary Index )
+basically like an additional sort key 
+must be defnied at table creation time 
+upto 5 LSI
+
+GSI(GLobal Secondary Index)
+added or modified after table has been created
+speeds up query on non key attributes
+
+if writes are throttled on GSI then main table will be throttiling
+for LSI main table RCus will be use so 
+
+default TTL(Time To Live) is 5 minutes 
+##EleasticCache 
+is used to store aggregated data instead of querying the data everytime
+
+
