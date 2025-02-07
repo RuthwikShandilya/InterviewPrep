@@ -12,3 +12,26 @@ df2 = spark.read.option("versionAsOf", 123).table("people10m")
 
 SELECT * FROM my_table VERSION AS OF 5;
 ```
+Schema Evolution in delta:
+
+it enables modifying schema of tbles dynamically 
+
+in spark we have to use mergeSchema option to enable this :
+
+df.write.format("delta").option("mergeSchema", "true").mode("append").save("path/to/delta-table")
+
+10. What happens when you delete data in a Delta Table?
+The data is not immediately removed but marked as deleted. The VACUUM command must be run to physically delete the data:
+
+from delta.tables import DeltaTable
+
+delta_table = DeltaTable.forPath(spark, "/path/to/delta-table")
+
+delta_table.alias("t").merge(
+    updates.alias("u"),
+    "t.id = u.id"
+).whenMatchedUpdate(set={"amount": "u.amount"}) \
+ .whenNotMatchedInsert(values={"id": "u.id", "amount": "u.amount"}) \
+ .execute()
+
+ 
