@@ -312,6 +312,16 @@ else:
 
 ---
 
+input=[1,2,3,10]
+smallerst_number=1
+for ele in input:
+    if ele>smallerst_number:
+        break
+    smallerst_number+=ele
+    
+print(smallerst_number)
+
+
 ## **📜 Advanced List Questions (17)**
 
 16. Implement a function that finds the **k-th largest** element in an unsorted list.  
