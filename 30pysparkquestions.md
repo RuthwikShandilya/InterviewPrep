@@ -1,3 +1,51 @@
+### Data Transformations 
+date_diff(col1,col2)
+to_date(col_in_string,string_col_format)
+year(col("col")) => to get year
+date_add(col(column),num_of_days to add) => add x number of days to the current date
+
+to_date => converts string to date on the specified format 
+
+schema = StructType([
+    StructField("Name", StringType(), True),
+    StructField("DOB", StringType(), True)
+])
+
+# Create data
+data = [
+    ("Anjali", "1995/02/01"),
+    ("Ramesh", "1998/07/02"),
+    ("Priya", "2001/08/09")
+]
+
+# Create DataFrame
+df = spark.createDataFrame(data, schema=schema)
+
+
+>>> age_df=df.withColumn("age",date_diff(current_date(),col("date_column"))/(364)).withColumn("year",day(col("date_column"))).withColumn("add_days",date_add(col("date_column"),30)).withColumn("day_of_week",date_format(col("date_column"),"EEEE")
+... )
+>>> age_df.show()
++------+----------+-----------+------------------+----+----------+-----------+
+|  Name|       DOB|date_column|               age|year|  add_days|day_of_week|
++------+----------+-----------+------------------+----+----------+-----------+
+|Anjali|1995/02/01| 1995-02-01|30.145604395604394|   1|1995-03-03|  Wednesday|
+|Ramesh|1998/07/02| 1998-07-02| 26.71978021978022|   2|1998-08-01|   Thursday|
+| Priya|2001/08/09| 2001-08-09|23.604395604395606|   9|2001-09-08|   Thursday|
++------+----------+-----------+------------------+----+----------+-----------+
+
+group by months and do a count(*)
+
+df_grouped = df.groupBy(year(col("Order Date")).alias("Year"), 
+                        month(col("Order Date")).alias("Month")) \
+               .agg(count("*").alias("Order Count")) \
+               .orderBy("Year", "Month")
+
+
+
+>>> temp_Df=new_df.withColumn("hour_type",when(col("time_of_day")<12,"Morning").when(((col("time_of_day")>12) & (c
+ol("time_of_day")<=15)),"AfterNoon").otherwise("Evening"))
+>>> temp_Df.groupBy("hour_type").count().show()
+
 #### Question 1
 
 ```
