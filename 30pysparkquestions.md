@@ -1,11 +1,11 @@
-### Data Transformations 
-date_diff(col1,col2)
-to_date(col_in_string,string_col_format)
-year(col("col")) => to get year
-date_add(col(column),num_of_days to add) => add x number of days to the current date
+from pyspark.sql import SparkSession
+from pyspark.sql.functions import col, to_date, year, month, date_add, date_format, current_date, when, count
+from pyspark.sql.types import StructType, StructField, StringType
 
-to_date => converts string to date on the specified format 
+# Initialize Spark Session
+spark = SparkSession.builder.appName("DateTransformations").getOrCreate()
 
+# Define schema
 schema = StructType([
     StructField("Name", StringType(), True),
     StructField("DOB", StringType(), True)
@@ -21,30 +21,45 @@ data = [
 # Create DataFrame
 df = spark.createDataFrame(data, schema=schema)
 
+# Convert DOB to DateType
+df = df.withColumn("date_column", to_date(col("DOB"), "yyyy/MM/dd"))
 
->>> age_df=df.withColumn("age",date_diff(current_date(),col("date_column"))/(364)).withColumn("year",day(col("date_column"))).withColumn("add_days",date_add(col("date_column"),30)).withColumn("day_of_week",date_format(col("date_column"),"EEEE")
-... )
->>> age_df.show()
-+------+----------+-----------+------------------+----+----------+-----------+
-|  Name|       DOB|date_column|               age|year|  add_days|day_of_week|
-+------+----------+-----------+------------------+----+----------+-----------+
-|Anjali|1995/02/01| 1995-02-01|30.145604395604394|   1|1995-03-03|  Wednesday|
-|Ramesh|1998/07/02| 1998-07-02| 26.71978021978022|   2|1998-08-01|   Thursday|
-| Priya|2001/08/09| 2001-08-09|23.604395604395606|   9|2001-09-08|   Thursday|
-+------+----------+-----------+------------------+----+----------+-----------+
+# Compute age, year, added days, and day of the week
+age_df = df.withColumn("age", (current_date().cast("long") - col("date_column").cast("long")) / 364) \
+           .withColumn("year", year(col("date_column"))) \
+           .withColumn("add_days", date_add(col("date_column"), 30)) \
+           .withColumn("day_of_week", date_format(col("date_column"), "EEEE"))
 
-group by months and do a count(*)
+age_df.show()
 
-df_grouped = df.groupBy(year(col("Order Date")).alias("Year"), 
-                        month(col("Order Date")).alias("Month")) \
-               .agg(count("*").alias("Order Count")) \
+# Group by year and month with count
+df_grouped = df.groupBy(year(col("date_column")).alias("Year"),
+                        month(col("date_column")).alias("Month")) \
+               .agg(count("*").alias("Count")) \
                .orderBy("Year", "Month")
 
+df_grouped.show()
 
+# Example: Categorizing time of day
+time_data = [
+    (8, ),
+    (14, ),
+    (19, )
+]
 
->>> temp_Df=new_df.withColumn("hour_type",when(col("time_of_day")<12,"Morning").when(((col("time_of_day")>12) & (c
-ol("time_of_day")<=15)),"AfterNoon").otherwise("Evening"))
->>> temp_Df.groupBy("hour_type").count().show()
+time_schema = StructType([
+    StructField("time_of_day", StringType(), True)
+])
+
+time_df = spark.createDataFrame(time_data, time_schema)
+
+temp_Df = time_df.withColumn("hour_type", 
+                             when(col("time_of_day") < 12, "Morning")
+                             .when((col("time_of_day") >= 12) & (col("time_of_day") <= 15), "Afternoon")
+                             .otherwise("Evening"))
+
+temp_Df.groupBy("hour_type").count().show()
+
 
 #### Question 1
 
