@@ -61,6 +61,16 @@ temp_Df = time_df.withColumn("hour_type",
 temp_Df.groupBy("hour_type").count().show()
 
 
+Pivot and Unpivot :
+
+df_pivot = df.groupBy("EmpID").pivot("Month", month_order).agg({"DaysPresent": "first"})
+
+using stack to unpivot 
+
+rows to columns -> pivot 
+columns to row -> stack
+
+
 #### Question 1
 
 ```
