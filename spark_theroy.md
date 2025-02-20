@@ -25,3 +25,14 @@ Execution Modes : Client mode and Cluster mode
 
 
 Optimizations in Spark : 
+
+
+
+## WHat happens when you submit a spark job in background
+1. when we do a spark submit the first thing is spark context gets crated which is the entry point of spark
+2. Based on the deploy mode it runs in the client mode or in any of the clusters as cluster mode
+3. the user code is converted into a DAG which represents transformations and actions
+4. the DAG scheduler divides the program into stages and each stage is divied into tasks basd on partitioons
+5. tasks are sent to executor to run on the worker nodes
+6. once the tasks are done they are sent back to driver
+7. 
