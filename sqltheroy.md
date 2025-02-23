@@ -15,3 +15,8 @@ Hash index => best used for exact matches (=)
 CREATE INDEX idx_employees_department ON employees USING btree(department);
 
 USING hash(email);
+
+## Sql Question Types : 
+1. Find the customers who made more than 3 purchases last month
+select count(order_id),customer_id from Customer table
+where order_date > current_date - INTERVAL '30 days'
