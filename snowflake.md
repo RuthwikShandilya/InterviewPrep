@@ -1,3 +1,70 @@
+# Snowpipe 
+Snow pipe is a continuous data Ingestion service which allows snowflake to automatically load files from cloud stoarage(s3|gcp|azure) into snow flake as soon as the file is added there.
+
+Example :
+Given a table created 
+
+CREATE OR REPLACE TABLE orders (
+    order_id INT,
+    customer_name STRING,
+    order_date DATE,
+    total_amount FLOAT
+);
+
+create storage integration and give for stage
+CREATE STORAGE INTEGRATION my_s3_integration
+TYPE = EXTERNAL_STAGE
+STORAGE_PROVIDER = 'S3'
+ENABLED = TRUE
+STORAGE_AWS_ROLE_ARN = '<your-iam-role-arn>'
+STORAGE_ALLOWED_LOCATIONS = ('s3://your-bucket/path/');
+
+
+
+CREATE OR REPLACE STAGE my_s3_stage
+STORAGE_INTEGRATION = my_s3_integration
+URL = 's3://my-bucket/my-folder/'
+FILE_FORMAT = (TYPE = 'CSV' SKIP_HEADER = 1);
+
+
+Now we create a stage 
+CREATE OR REPLACE STAGE my_s3_stage 
+URL = 's3://my-bucket/orders-data/'
+CREDENTIALS = (AWS_KEY_ID='your-key' AWS_SECRET_KEY='your-secret')
+FILE_FORMAT = (TYPE = 'CSV' FIELD_OPTIONALLY_ENCLOSED_BY='"' SKIP_HEADER=1);
+
+
+
+CREATE OR REPLACE PIPE my_snowpipe 
+AUTO_INGEST = TRUE
+AS
+COPY INTO orders 
+FROM @my_s3_stage 
+FILE_FORMAT = (TYPE = 'CSV');
+
+ALTER PIPE my_snowpipe REFRESH;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Tables 
 1. Permanant : exists until explicitly dropped
 2. Temporary
@@ -92,3 +159,8 @@ file_format=(type=csv)
 
 Estimation functions 
 Table sampling
+
+
+
+
+
