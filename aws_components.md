@@ -33,3 +33,16 @@ How is it faster
 4. VACCUM REINDEX
 
 Concurrency scaling is basically adding new compute nodes to handle query load
+
+#AWS GLue 
+
+It has two main components 
+1. Data Catalog : Which can connect to multiple datastores/datasources and using crawlers store the metadata information in data catalog
+   a. Databases
+   b. tables
+   c. connections
+   d. Crawlers
+3. ETL : Where we can run jobs notebooks and everything based on the datastores defined
+   a. ETL jobs
+   b .triggers
+   c. workflows 
