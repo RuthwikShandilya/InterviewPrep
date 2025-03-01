@@ -150,7 +150,7 @@ Creating Dynamo Db table :
 Select parition key 
 select table class (DynamoDb STandard or DynamoDB Standard IA(Infrequently Accessed))
 
-Two modes here 
+Two capacity modesmodes here 
 Read and Write Capacity :
 Provisioned Mode(Default)
 On DEmand Mode 
@@ -223,5 +223,143 @@ for LSI main table RCus will be use so
 default TTL(Time To Live) is 5 minutes 
 ##EleasticCache 
 is used to store aggregated data instead of querying the data everytime
+
+Dynamo DB Security and Other features:
+Migration can migrate oracle and sql data into dynamo db
+
+Amazon RDS : Not for Big data but for normal workloads
+
+Amazon Aurora : for mqsql and postgres:
+is 5x faster than normal mysql dbs and 3x faster than postgres
+1/10 cost of dbs
+128TB of db volume
+15 read replicas
+constinuots back up to s3
+aurora serverless for auto scaling
+
+Shared and exclusive locks
+Shared lock is lock on write but reads happen
+exclusive is lock on read and write on the table 
+Shared Lock
+example : select * from table where department ='Finance' FOR SHARE;
+
+Exclusive Lock : 
+Select * from table where department ='Finance' FOR UPDATE;
+
+RDS Best practices :
+
+1. Use cloud watch to monitor CPU.memory 
+2. Perform automatic backups when the write on the table are less
+3. Rate limits on Amazon gateway
+4. Use proper Indexes
+5. Avoid full data scans
+6. Analyze table command
+7. 
+
+#Amazon DocumentDB(cloud version of mongodb): used to store JSON data 
+
+## Amzon Memroy DB for REDIS :
+ultra fast performance with 160millions requests /second
+can scale storage from 10Gb to 100TBS
+
+amazon Neptune :
+Graph database example social network (posts likes,comments everthing connected in a graph)
+query languges for Nepture: Gremline,openCypher,SparQL
+
+Amazon Timestream:
+
+Fully managed fast scalable timeseries database
+trillions of time events 
+scaling,replication SQL compatible 
+Use cases: IOT applications 
+
+
+Amazon Redshift :
+all analytical 
+AWS Distributed petabyte scale data warehouse
+designed for OLAP not OLTP
+Massive parallel processing (MPP),columnar storage
+scaling up and down 
+replication and backups
+monitoring cloudwatch
+
+Architectire : 
+
+Leader nodes : query plans,communicates between comute nodes 
+Compute Nodes : executes the plan , 
+node slices : each compute node has node slices that processees chunsk of data 
+
+
+Redshift Spectrum :
+queries exa bytes of unstrcutured data in s3 without loading 
+seperates storage and compute
+gzip and snappy compression
+
+
+Redshift Durablility
+backsup to s3 automatically asynchronoulsy replicated to other regions
+failed nodes are automaticalluy replaced
+
+Redshift Distibibution : 
+1. AUTO
+
+2. EVEN 
+leader nodes dirstibutes in round robin pattern
+3. KEY
+based on values on one column 
+4. ALL
+a copy of entire table is sent to all compute nodes
+
+Importing / Exporting data 
+COPY Command 
+to load to reshift 
+
+UNLOAD command to unload data into files to S3
+Amazon Aurora zero ETL integresion - AUrora -> Redshit 
+
+Reshfit Streaming INgestion
+
+Usages of Commands : 
+COPY command is typically used to move data from s3 to Redshift 
+if the data is already in Redshit : INSERT into select * 
+create table as select * 
+
+Copy can decrypt data from s3
+automatic compression option 
+
+Narrow table : many rows few columns
+load it with single copy command 
+hidden metadata columns consume too much space
+DBLINK 
+sync data between postgres sql and resshift
+
+
+Concurrency scaling : automatically scale clusters to handle bursts loads
+WLM queues manage which queries are sent to concuurrency scaling clusters
+
+
+short query Acceleration :
+prioritize short running queries over long running onces 
+they run in dedicated space wont wati for long onces
+works with create table as 
+and select statements
+can configure how many seconds is short 
+
+VACCUM command :
+Recover space from deleted rows
+VACCUM FULL 
+VACCUM DELETE ONE 
+VACCUM SORT ONLY 
+VACCUM REINDEX
+
+Redshit anti patterns :(do not use rds for these)
+small data sets
+OLTP 
+Unstrcutured data 
+BLOB data (store them in s3)
+
+
+
+
 
 
