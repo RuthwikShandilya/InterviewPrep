@@ -358,63 +358,88 @@ OLTP
 Unstrcutured data 
 BLOB data (store them in s3)
 
-#AWS Glue
-Can import a hive metastore 
-GLue Data Catalog is the metadata information for the data on S3
-Glue ETL:
-Automatically Generate Code 
-Scala or Python
-Service side encryptoin 
-can be event driven
-DPU(DAta Processing Unit) => enable job metrics and tune the perfomance 
-Jobs run under the serverless platform
-Glue Scheduler to scheule a job
-GLue triggers to automate job runs based on events
+Resizing Redshift Clusters :
 
-##DynamicFrame
-is a collection of Dynamic records
-dynamic records are slef descriging have a schema
+Elastic Resize : 
+quickly add or remove nodes of same type 
+Classic Resize : 
+change node type and number of node
+read only
 
-Can create a dynamic frma using applYMapping
+Latest features :
+RA3 nodes : 
+enable independect scaling of compute and storage
+
+Red shift data lake export :
+
+unload redshift query to s3 in parquet
+automatically partitioned 
+
+Spatial data types :
+Geometry,geography
+
+Cross region data sharing :
+share live data across redhsit clusters without copying a
+it required ra3 nodes
+
+Redshift Server less : 
+
+Auto scale based on load
+Monitoring 
+SYS_QUERY_HISTORY
+SYS_LOAD_HISTORY
+SYS_SERVERLESS_USAGE
+
+CLoud watch logs 
+Cloud watch metrics
+
+MAterialized Views : 
+Autorefresh 
+can run once a day 
+
+Redshfit data Sharing :
+
+Securely share live data across multiple clusters 
+why ?
+1. workload isolaaiton 
+2. cross group collaboration 
+3. sharing data between env
+can share db,tables,udfs, views 
+
+REdshfit Lambda UDF:
+use lamba functions in SQL queries 
+need to grant usage on this fuctnion
+
+Redshift Federated Queries : 
+Query and analuze across databases,warehouses and lakes
+
+Redshift System tables and Views:
+SYS views
+STV tables 
+SVV views
+STL logs 
+SVCS details about queries on main and concurrency scaling clusters
+SVL views : details aboiut quries on main clusters 
+
+Redshift Data API :
+secured HTTP endpiint for SQL stement to Redshift Clusters 
+Asyncronous 
+integrate with other AWS functionality (AWS LAMBDA,Event Bridge)
+
+MAximum parameters : 
+Query Duration : 24 hours 
+Active Queries : 500
+query result size (gxiped):100MB
+Result retention time : 24 hours
+query statment size: 100kb
+packet for query data per row: 64KB
+30 transactions per statement
 
 
-Transformations:
-dropduplicates
-Machine learning transformations : findMatches ML
-
-Glue ResolveChoice :
-project
-resolve ambuility differnt data types (double and string)
 
 
 
-Modyfying the Data Catalog:
-
-Time based schedule
-Job Bookmarks:
-similar to checkpoining 
-job bookmarks wont work on updates only inserts 
 
 
-
-Glue Cost Model :
-billed for crawlers and ETL Jobs 
-first million objects are free for Glue Data Catalog 
-
-Glue Anti Patterns:
-
-AWS GLue Studio :
-
-
-DQDL rules
-
-AWS GLue DataBrew:
-can create reciepie of transformations that can be applied on job
-
-
-Handling PII in databrew transformations:
-
-Glue workflows :
-triggers
 
 
