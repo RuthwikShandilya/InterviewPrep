@@ -358,8 +358,63 @@ OLTP
 Unstrcutured data 
 BLOB data (store them in s3)
 
+#AWS Glue
+Can import a hive metastore 
+GLue Data Catalog is the metadata information for the data on S3
+Glue ETL:
+Automatically Generate Code 
+Scala or Python
+Service side encryptoin 
+can be event driven
+DPU(DAta Processing Unit) => enable job metrics and tune the perfomance 
+Jobs run under the serverless platform
+Glue Scheduler to scheule a job
+GLue triggers to automate job runs based on events
+
+##DynamicFrame
+is a collection of Dynamic records
+dynamic records are slef descriging have a schema
+
+Can create a dynamic frma using applYMapping
+
+
+Transformations:
+dropduplicates
+Machine learning transformations : findMatches ML
+
+Glue ResolveChoice :
+project
+resolve ambuility differnt data types (double and string)
 
 
 
+Modyfying the Data Catalog:
+
+Time based schedule
+Job Bookmarks:
+similar to checkpoining 
+job bookmarks wont work on updates only inserts 
+
+
+
+Glue Cost Model :
+billed for crawlers and ETL Jobs 
+first million objects are free for Glue Data Catalog 
+
+Glue Anti Patterns:
+
+AWS GLue Studio :
+
+
+DQDL rules
+
+AWS GLue DataBrew:
+can create reciepie of transformations that can be applied on job
+
+
+Handling PII in databrew transformations:
+
+Glue workflows :
+triggers
 
 
