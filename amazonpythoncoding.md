@@ -40,3 +40,21 @@ print(mergeSort(input_num))
         
         
 ```
+
+### target sum pair
+
+```
+#Write code to find the sum of any two numbers in a given array that could be equal to x.
+
+input_num=[1,2,3,4,5,6,7,8]
+target=9
+output_num=[]
+input_set=set()
+for ele in input_num:
+    if target-ele in input_set:
+        output_num.append((ele,target-ele))
+    else:
+        input_set.add(ele)
+        
+print(output_num)
+```
