@@ -58,3 +58,29 @@ for ele in input_num:
         
 print(output_num)
 ```
+
+##is perfect square optimized approach 
+
+```
+#is perfect Square
+
+
+
+def isPerfectSquare(n):
+    if n<0:
+        return False
+    left,right=0,n
+    while left<=right:
+        mid=(left+right)//2
+        square=mid*mid
+        print(mid,square,left,right)
+        if square == n:
+            return True
+        elif square<n:
+            left=mid+1
+        else:
+            right=mid-1
+    return False
+    
+print(isPerfectSquare(14))
+```
