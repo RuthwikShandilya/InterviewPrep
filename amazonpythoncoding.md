@@ -84,3 +84,20 @@ def isPerfectSquare(n):
     
 print(isPerfectSquare(14))
 ```
+
+MAx sum array 
+
+```
+class Solution:
+	def findMaxSubarraySum(self, nums: List[int]) -> int:
+		max_sub_array=[]
+		max_sum_array=float('-inf')
+		for i in range(len(nums)):
+			for j in range(i,len(nums)):
+				if sum(nums[i:j+1]) > max_sum_array:
+					max_sum_array=sum(nums[i:j+1])
+					max_sub_array=nums[i:j+1]
+		
+		return max_sum_array
+
+```
