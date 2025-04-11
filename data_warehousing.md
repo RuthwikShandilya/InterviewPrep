@@ -11,6 +11,21 @@ Dimension tables have the information about each individual metric like customer
 Fact tables contain all the keys from the dimnesion table to make the complete sense of the data example a transaction table with customer id and product id with transaction date.
 This contains foreign keys from the dimension tables.
 
+Source : https://medium.com/@changuru2023/types-of-fact-tables-data-warehouse-cec3cfaa2efe
+
+#### Types of Fact Tables :
+We have 4 types of fact tables : 
+1. Transactional Fact tables:
+   This type of fact table is used to store business events like transactions where each reocrd is an event.Analysis can be performed on the basic of this records in terms of aggregations.This is used for Customer behaviour,sales patterns and operational efficiency
+2. Periodic Snapshot Fact Tables:
+Peridic Snap shot tables is used to aggregate values based on data and store  summarized view of the data based on redulat time intervals example month etc
+This is used to monitor trends ,performance and make decisions.
+3. Accumulating Snapshot Fact Tables :
+This kind of fact tables is used to tract the business or a flow like an order status based on order id.Mostly used for process efficiency and identifying bottlenecks in process and optimize supply chain performance.
+4. Fact less fact tables
+   here the tables dont have any columns which are measures these just have foreign keys from other dimension tables.
+
+
 First we define dimension tables and then we define fact tables
 #### We have a concept of late coming dimension or early arriving fact:
 Here having records in few dimension tables but not all then it fact table it might give us an foreign key error.
