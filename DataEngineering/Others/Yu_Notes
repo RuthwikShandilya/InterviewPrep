@@ -1,11 +1,11 @@
-intro prep
-group by vs window
-unity catalog
+Intro prep
+groupBy vs window
+Unity catalog
 udf
 libraries in compute
 diff b/w copy into and autoloader
 how delta achieves its features
-autoloader syntax
+autoloader syntax and modes
 spark memory management
 explode and explode_outer
 Map vs flat map
@@ -15,3 +15,6 @@ ACLS in RBAC
 Cache and persist usage
 Sdc types
 delta share
+Diff b/w blob and adls
+OPTIMIZE write and read
+Serverless or All purpose compute?
