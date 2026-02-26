@@ -1,0 +1,17 @@
+intro prep
+group by vs window
+unity catalog
+udf
+libraries in compute
+diff b/w copy into and autoloader
+how delta achieves its features
+autoloader syntax
+spark memory management
+explode and explode_outer
+Map vs flat map
+Salting example
+Pivot
+ACLS in RBAC
+Cache and persist usage
+Sdc types
+delta share
