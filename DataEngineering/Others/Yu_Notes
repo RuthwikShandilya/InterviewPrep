@@ -1,4 +1,3 @@
-Intro prep
 groupBy vs window
 Unity catalog
 udf
@@ -18,3 +17,26 @@ delta share
 Diff b/w blob and adls
 OPTIMIZE write and read
 Serverless or All purpose compute?
+////////////////////////////////////////  DELOIETTE  /////////////////////////////////////////////////////////////
+Idempotent
+Azure vz azure
+Delta lake how do you create or idea what to consider or how to think of this?
+Adf services or aws services u know
+Stored procedure vs function 
+Primary key vs unique key
+Inner, left, right,left anti , left semi join, full
+If a spark job is running more time then what would do you do
+AQE
+Merge scd2 logic
+Global temp and local temp tables
+How delta can timetravel and syntax
+From source u getting much data then how do you optimize
+Iceberg vs delta
+How do you decide no of partitions
+ACID
+What is cte where do you use
+What happens when you submit a spark job
+Optimization techniques
+How do you connect to oracle source in databricks 
+CDC
+ 
