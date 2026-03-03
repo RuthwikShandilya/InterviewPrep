@@ -39,4 +39,13 @@ What happens when you submit a spark job
 Optimization techniques
 How do you connect to oracle source in databricks 
 CDC
- 
+////////////////////////////////////////  ACCORDION  /////////////////////////////////////////////////////////////
+how do you schedule the pipelines in dbricks
+pyspark script 2 highest salary from each department (given emp,dept,salary tables)
+merge scd 2 logic for salary table
+we have a source i.e esencially scraping data from website and dropping json files every 20 mins in containers  and final report we need to aggregate a report on how many files came,3 columns percentage a,b,c how would you do this using medallion architecture
+what would be the structure of the dbricks pipeline
+vaccum 
+z-ordering vs liquid clustering when to apply
+all purpose and job compute which is cheaper with same conf 
+difference between delta live tables and delta tables
