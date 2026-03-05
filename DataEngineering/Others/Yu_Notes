@@ -15,8 +15,17 @@ Cache and persist usage
 Scd types
 delta share
 Diff b/w blob and adls
+pyspark code based on fact and dimension tables
+capturing inserts updates and deleted
 OPTIMIZE write and read
-Serverless or All purpose compute?
+can cdc be replaced by incremental
+would repartition always work 
+groupBy vs reducedby
+1 executor dies what happens. will job die?
+OOM exception why. is it only because of memory..what would you do to solve this!
+what are different joins in pyspark
+If job runs more than expected what u do?
+RECURSIVE CTE
 ////////////////////////////////////////  DELOIETTE  /////////////////////////////////////////////////////////////
 Idempotent
 Azure vz azure
