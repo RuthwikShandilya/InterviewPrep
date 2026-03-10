@@ -26,7 +26,11 @@ OOM exception why. is it only because of memory..what would you do to solve this
 what are different joins in pyspark
 If job runs more than expected what u do?
 RECURSIVE CTE
-////////////////////////////////////////  DELOIETTE  /////////////////////////////////////////////////////////////
+Snowflake VS Star Schema
+Dbricks Merge VS SQL Merge
+
+/////////////////////////////////////////////////////  DELOIETTE  ////////////////////////////////////////////////////////////////////////
+
 Idempotent
 Azure vz azure
 Delta lake how do you create or idea what to consider or how to think of this?
@@ -43,12 +47,14 @@ From source u getting much data then how do you optimize
 Iceberg vs delta
 How do you decide no of partitions
 ACID
-What is cte where do you use
-What happens when you submit a spark job
+What is cte where do you use ?
+What happens when you submit a spark job ?
 Optimization techniques
-How do you connect to oracle source in databricks 
+How do you connect to oracle source in databricks ?
 CDC
-////////////////////////////////////////  ACCORDION  /////////////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////  ACCORDION  ////////////////////////////////////////////////////////////////////
+
 how do you schedule the pipelines in dbricks
 pyspark script 2 highest salary from each department (given emp,dept,salary tables)
 merge scd 2 logic for salary table
@@ -58,3 +64,15 @@ vaccum
 z-ordering vs liquid clustering when to apply
 all purpose and job compute which is cheaper with same conf 
 difference between delta live tables and delta tables
+
+//////////////////////////////////////////////////////  MPHASIS  //////////////////////////////////////////////////////////////////
+
+Diff btw data lake and delta lake
+Incremental data receives 3 previous days data. How to process without watermark or cdc such that only incrementals are going ?
+How spark helps in big data processing
+Services in azure
+Data skew and prevention
+Modules you have used
+what is scd ?
+What are connectors that doesnt support dbricks and you have encountered ?
+How do you trigger Dbricks pipelines?
