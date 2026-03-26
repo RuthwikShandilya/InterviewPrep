@@ -31,6 +31,8 @@ Dbricks Merge VS SQL Merge
 How do you schedule jobs in Databricks?
 How do you handle schema evolution in Delta tables?
 How do you handle large data joins efficiently?
+diff btw union and unionbyname
+
 
 /////////////////////////////////////////////////////  DELOIETTE  ////////////////////////////////////////////////////////////////////////
 
