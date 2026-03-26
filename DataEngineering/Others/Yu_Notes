@@ -16,10 +16,10 @@ Scd types
 delta share
 Diff b/w blob and adls
 pyspark code based on fact and dimension tables
-capturing inserts updates and deleted
+capturing inserts updates and deletes
 OPTIMIZE write and read
 can cdc be replaced by incremental
-would repartition always work 
+would repartition always work ?
 groupBy vs reducedby
 1 executor dies what happens. will job die?
 OOM exception why. is it only because of memory..what would you do to solve this!
@@ -28,6 +28,9 @@ If job runs more than expected what u do?
 RECURSIVE CTE
 Snowflake VS Star Schema
 Dbricks Merge VS SQL Merge
+How do you schedule jobs in Databricks?
+How do you handle schema evolution in Delta tables?
+How do you handle large data joins efficiently?
 
 /////////////////////////////////////////////////////  DELOIETTE  ////////////////////////////////////////////////////////////////////////
 
@@ -55,7 +58,7 @@ CDC
 
 ///////////////////////////////////////////////////  ACCORDION  ////////////////////////////////////////////////////////////////////
 
-how do you schedule the pipelines in dbricks
+how do you schedule the pipelines in dbricks ?
 pyspark script 2 highest salary from each department (given emp,dept,salary tables)
 merge scd 2 logic for salary table
 we have a source i.e esencially scraping data from website and dropping json files every 20 mins in containers  and final report we need to aggregate a report on how many files came,3 columns percentage a,b,c how would you do this using medallion architecture
