@@ -1,0 +1,516 @@
+1. why should we used self hosted ir for accesssing on prem data - cause azre ir will
+pick from random addresses and ur private network cant be reached 
+2. how much data for pipeline
+project info
+3. self intro
+4. how much data for pipeline
+5. how many pipelines 
+6. team size
+7. spark performance optimization - create scenario and talk in dbricks nd spark
+8. what is the cluster size databricks 
+9. diff btw union and unionbyname
+10. how are stages created 
+11.how can we identify data skew - check tasks
+12.scheduled, manual, or event-based execution.
+13.diff btw delta late,data lake and data warehouse
+
+14.when u are using azure ir for on prem data . this pipeline is slow how ill u take of this
+15.why parquet is choosed. and why faster
+16.how do u connect to adls in pyspark dbricks notebook
+17.where the data is stored in bronze layer
+18.why do we consider the df as ummutable in spark
+19.in databricks when u run the cell below job 1 and 2 comes what are those
+( df.select, df.filter, df.show). 
+how mamy jobs?
+
+19.diff btw transformations and action
+20.why lazy evaluation
+> “Spark uses lazy evaluation to optimize performance. Instead of executing each transformation immediately, it builds a full execution plan (DAG) and delays execution until an action is called.
+> This allows Spark to apply optimizations like predicate pushdown, column pruning, and combining multiple transformations into a single stage, which reduces data movement and improves efficiency.
+> It also avoids unnecessary computations — for example, if part of the data isn’t needed for the final result, Spark won’t process it at all.
+> Overall, lazy evaluation helps minimize resource usage and makes distributed processing much faster and more efficient.”
+
+append in file mode?
+what is deltatable?
+other types of tables in spark
+code deploy to uat?
+written ci/cd on own?
+what kind of curation pipeline in adf?
+
+--------------------------------------------------------------------------------------------------------------------
+1. Project deep and roles in project
+2. Managing the team
+3. Adf pipelines designing for 30 tables and 20 rest api end points with every standard like pipeline failure , fault tolerant and load them into adls
+4. Sql 2 question find the total direct and indirect reporties to a manager
+5. Third highest salary diff methods
+how did spark get parallelism 
+pyspark code orphan records detection and aa capturing CDC
+spark internals
+pyspark code based on fact and dimension tables
+capturing inserts updates and deleted 
+group by vs window
+unity catalog
+udf
+libraries in compute
+diff copy into and autoloader
+how delta get many features
+syntax
+memory spark management
+explode and explode_outer
+
+| emp_id | emp_name | manager_id |
+| ------ | -------- | ---------- |
+| 1      | A        | NULL       |
+| 2      | B        | 1          |
+| 3      | C        | 1          |
+| 4      | D        | 2          |
+| 5      | E        | 2          |
+| 6      | F        | 3          |
+
+emp_id   reports  indir
+1        2,3      4,5,6
+--------------------------------------------------------------------------------------------------------------------
+table orders:
+order id
+cus id
+order date
+amt
+
+sql query to return each customers most recent order along with total no of orders that customer has placed
+
+with demo as(
+select count(*) as totalorders
+from orders
+group by cusid)
+
+select * from (select dense_Rank() over(partition by cusid order by orderdate desc) as rnk,totalorders,orderdate
+from orders o
+join demo d
+on d.cusid=o.cusid) a
+where rnk=1
+
+------------------------------------------------------------------------------------------------------------
+
+cdc gold insert updates  databricks using delta framework chatgpt git job run oka object merge -- project
+bronze delta
+silver - delta source - destn - delta (gold)
+-----------------------------------------------------------------------------------------------------------------------
+
+with saltable as (order by sal desc) as rnk ,empid,sal
+from table
+)
+
+select *
+from saltable
+where rnk==3
+
+partition by included - assign a rank to each col record mentioned
+not included - assigns the rank based on the order 
+
+
+1 50  1  3
+1 32  2 4
+2 55  1 2
+3 56 1 1
+4 20 1 5
+
+
+1 32 2 rank
+Given two tables — Customers and Orders — 
+write a query to find customers who haven’t placed any orders in the last 6 months.
+
+select *
+from cus c
+left join orders o on c.id=o.id
+where o.orderdate>=currentdate- Interval '6' month
+and o.id is null
+
+-----------------------------------------------------------------------------------------------------------------------
+tasks:
+
+bronze db - silver delta - gold delta
+
+spark ui (install)
+secrets dbricks backed
+spillage optimization hands on
+secrets hands on
+cdc hands on in databricks
+-----------------------------------------------------------------------------------------------------------------------
+
+tasks uneven spill 
+stages check for shuffle
+
+If Shuffle ↑
+Broadcast join / pre-aggregate
+If Skew
+AQE skew join / salting
+If Data ↑
+Incremental processing / partition pruning
+If Small Files
+Optimize file size (128–512MB), compaction
+If Partitions wrong
+spark.conf.set("spark.sql.shuffle.partitions", 400)
+If Spill
+Increase executor memory / reduce wide ops
+-----------------------------------------------------------------------------------------------------------------------
+
+sales table - city,month(yyyymm),brand,sales
+location table - city,country
+time table - month,year 
+sql - country,year,current year sales,previous year sales
+
+select l.country,t.year,s.sales as current_year_sales,lead(s.sales)as previous_Year_Sales
+from sales s
+join location l on s.city=l.city
+join time t on s.month = t.month
+order by year
+
+
+csv sheet
+1 column - sales amt,id,
+
+2 highest amount
+
+df = spark.read.format("csv").options("header",True).load("")
+
+from pyspark.sql.functions import *
+wind = window.partitionBy(col("id").orderBy(col("salesamt").desc())
+finaldf = df.withColumn("rnk", dense_Rank over(wind))
+targetdf=finaldf.filter("rnk==2")
+
+targetdf.write.format("csv").options("header",True).save("")
+-----------------------------------------------------------------------------------------------------------------------
+
+id salary
+hike new column 5% of salary
+
+id,salary,hike
+
+df=spark.read.format("csv").option("header",True).load("")
+df1=df.withColumn("hike",0.5*salary)
+df1.write.format("csv").loc("")
+
+
+3 highest salary from table
+
+df = window.partitionBy(col("department").orderBy(col("sal").desc())
+finaldf = sourcedf.withColumn("rnk",dense_rank over(df))
+finaldf.filter("rnk ==3")
+-----------------------------------------------------------------------------------------------------------------------
+
+emp table
+empid , first name ,last nmae,dept id , project , address, dob , gender 
+
+dept table 
+dept id , dept name, 
+
+salary table 
+emp id , emp position , doj , salary startdate, sal updatedate , salary
+
+pyspark script 2 highest salary from each department 
+
+df = spark.table("emptable")
+df2 = spark.table("depttable")
+df3 = spark.table("salarytbale")
+
+dffinal = df.join(df2,deptid).join(df3,empid)
+dftemp = window.partitionby("dept_id").orderby(col("salary").desc())
+rankdf= dffinal.withColumn("rnk",dense_rank() over(dftemp))
+rankdf.filter(col("rnk")==2)
+
+salary table:
+select registration_date,country,registration_users,
+
+row_nmber over(partition by country order by registration_date) as total_
+from table
+
+select registration_date,country,registration_users,sum(registration_users) as totalusers
+from table
+group by country
+
+-----------------------------------------------------------------------------------------------
+
+csk 
+mi
+rcb
+
+csk mi
+csk rcb
+mi csk
+mi rcb 
+rcb csk
+rcb mi
+
+with cte as temp 
+(
+select distinct a.team as one,b.team as two
+from table a
+join table b on a.team!=b.team
+) 
+
+select one,two
+from temp
+where two,one not in (select * from temp)
+
+=----------------------------------------------------------------------------------------------------
+. What is the difference between INNER JOIN, LEFT JOIN, and RIGHT JOIN?
+2. How do you calculate the median of a numeric column in SQL?
+3. Write a query to find duplicate rows in a dataset.
+4. What is the difference between GROUP BY and ORDER BY?
+5. Explain the purpose of window functions and give an example.
+6. Write a query to calculate the rolling average of sales for the past 7 days.
+7. How would you identify the second-highest value in a column?
+8. Explain how HAVING differs from WHERE with examples.
+9. Write a query to extract users who performed at least 5 transactions in a month.
+10. How would you detect anomalies or outliers in a dataset using SQL?
+11. Write a query to pivot a table and convert rows into columns.
+12. How can you rank users based on their total purchase value in descending order?
+13. Write a query to calculate the percentage contribution of each product to the total sales.
+14. Explain the concept of CASE statements with an example.
+15. Write a query to count the number of unique users by day.
+16. How would you calculate a cumulative sum of a column?
+17. Write a query to identify the first and last transactions of each user.
+18. How do you use ROW_NUMBER() to eliminate duplicates from a table?
+19. What are lag and lead functions, and how are they used in SQL?
+20. Write a query to calculate the time difference between consecutive events for each user.
+21. How would you handle missing values in SQL?
+22. Write a query to remove duplicate rows from a dataset.
+23. How can you split a single column into multiple columns in SQL?
+24. Explain how you would clean a dataset with inconsistent formats (e.g., date or string issues).
+25. Write a query to standardise data by scaling numeric columns between 0 and 1.
+
+https://sparkbyexamples.com/pyspark/top-100-pyspark-functions-for-data-engineering-interviews/
+
+-----------------------------------------------------------------------------------------------------------------------
+fetch name of employees start with vowel
+doesnt end with vowel
+
+select name
+from emp_table
+where name like 
+
+CustomerID	CustomerName
+1	Alice
+2	Bob
+3	Charlie
+4	David
+
+Orders
+OrderID	CustomerID	OrderDate
+101	1	2025-01-05
+102	1	2025-02-10
+103	2	2025-02-15
+104	2	2025-03-20
+105	3	2025-01-18
+
+Payments
+PaymentID	OrderID	PaymentAmount
+1001	101	500
+1002	103	300
+1003	104	400
+ 
+Question
+Write a SQL query to find all customers who have placed at least 2 orders but have at least one order with no payment.
+
+with cte as temp (select count(customerid) as cnt,customername,customerid,orderid
+from customers c
+join orders o on c.customerid=o.orderid
+group by customerid
+having cnt>2
+)
+ 1, 101
+ 1,102
+ 2 , 103
+ 2,104																									
+
+selct customerid,count(customerid) as cnt
+from temp t
+join payment p on t.orderid=p.orderid
+group by customerid
+having cnt>1
+
+1,101,1001
+2,103,1002
+
+df1 = df.filter(col("status") == "SUCCESS")
+df2 = df1.groupBy("country").count()
+df3 = df2.withColumn("flag", lit("Y"))
+how many stages
+
+
+ProductID	ProductName	Category	Price	LastModifiedDate
+101	iPhone 12	Mobile	699	2025-07-14
+102	Dell XPS	Laptop	999	2025-07-14
+103	iPad Air	Tablet	499	2025-07-14
+ 
+ 
+merge into target t
+using (Select * from source) s
+on t.pk=s.pk
+when matched then update
+    t.id = s.id,
+	t.name = s.name
+	t.category = s.category
+    t.price = s.price
+	t.valid_to = current_timestamp(),
+	t.is_Active='N'
+when not matched then  
+insert into (
+    t.id,
+	t.name,
+	t.category,
+	t.price,
+	t.valid_to,
+	t.valid_from,
+	t.is_Active
+	)
+values(
+     s.id,
+	 s.name,
+	 s.category,
+	 s.price,
+	 '9999',
+	 current_timestamp(),
+	 'Y'
+)
+
+productid,productname,category,price,last_modified_Date,valid_from,valid_to,is_Active
+
+1.can cdc be replaced by incremental
+2.would repartition always work 
+3.groupBy vs reducedby
+4.1 executor dies what happens. will job die?
+5.OOM exception why. is it only because of memory..what would you do to solve this cause its more costly . 
+6.what are different joins in pyspark
+7.in the code u have written . if job runs more than expected what u did .
+increased memory -- this is costly .
+
+8.df1 = df.filter(col("status") == "SUCCESS")
+df2 = df1.groupBy("country").count()
+df3 = df2.withColumn("flag", lit("Y"))
+how many stages
+
+9.select name
+from emp_table
+where name like 
+
+CustomerID	CustomerName
+1	Alice
+2	Bob
+3	Charlie
+4	David
+
+Orders
+OrderID	CustomerID	OrderDate
+101	1	2025-01-05
+102	1	2025-02-10
+103	2	2025-02-15
+104	2	2025-03-20
+105	3	2025-01-18
+
+Payments
+PaymentID	OrderID	PaymentAmount
+1001	101	500
+1002	103	300
+1003	104	400
+ 
+Question
+Write a SQL query to find all customers who have placed at least 2 orders but have at least one order with no payment.
+
+10.with out using like-fetch name of employees start with vowel
+doesnt end with vowel
+
+11.implement scd type 2. and write the destination table schema.
+src table:
+ProductID	ProductName	Category	Price	LastModifiedDate
+101	iPhone 12	Mobile	699	2025-07-14
+102	Dell XPS	Laptop	999	2025-07-14
+103	iPad Air	Tablet	499	2025-07-14
+--------------------------------------------------------------------------------------------
+select registration_date,country,registration_users,
+
+select 
+sum(salary) over(partition by deptid order by salary desc
+rows between unbounded preceeding and current row ) as total_cnt
+from table
+team A  team B  winner
+ind     AUS     IND
+SL      AFG    AFG
+NZ      IND    NZ
+AUS     SL     SL
+
+team names  no of matched    no of wins
+IND          2               1
+SL           
+        
+with cte as lasttable(select team a  as allteam, winner
+from cricket 
+union all 
+select team b as allteam,winner
+from cricket )  ---
+
+allteam  winner 
+ind  IND
+SL   AFG
+NZ   NZ
+AUS   SL
+AUS   IND
+AFG   AFG
+IND  NZ
+SL   SL
+
+with cte as res(select count(allteam) as noofmatches,
+case count() if winner else end as noofwins
+FROM lasttable
+group by allteam)
+
+ANSWER:
+
+SELECT
+    team,
+    COUNT(*) AS matches_played,
+    SUM(CASE WHEN team = winner THEN 1 ELSE 0 END) AS wins
+FROM (
+    SELECT team_a AS team, winner FROM matches
+    UNION ALL
+    SELECT team_b AS team, winner FROM matches
+) t
+GROUP BY team;
+---------------------------------------------------------------------------------------------------------------
+a = "yuvana"
+each letter no of times   
+python:
+
+dicta={}
+for i in a:
+    if i not in dicta :
+        dicta[i] = a.count(i)
+
+-----------------------------------------------------------------------------------------------------------------
+a = [2,3,4,2,3,4,5,6,7,8,7,9]
+order same with no duplicates   yayy
+
+l=[]
+for i in a:
+    if i not in l then l.append(i)
+
+------------------------------------------------------------------------------------------------------------
+
+interview 
+end activities dataverse
+note book alerts , 
+note book widgets - dynamic ga how to pass variables
+retries to error 
+error how to handle
+emails how did u configure
+pyspark wen to use and sql wen to use
+to trigger one notebook from another
+workflow lo multiple tasks - 2 tasks failed -when triggeres it troggers from continuation
+when workflow ran - it stopped in the middle - when re ran - some issue - re running first- no duplicate data - 
+files - secure credentials- key vault to use -dbutils.secrets.get
+requirement - to design a pipeline-?? -- sources , destinations,logics,transformations,size,volume,streaming/batch,structured/unstructured,
+code how u write -- imports,defining configurations,reusable definations,actual code
+
+pipeline running fine - slow today - debug -- spark ui stage which taking more time, are we doing wide transformations --or using 
+partitions having more data -- repartition/skewing,
+
