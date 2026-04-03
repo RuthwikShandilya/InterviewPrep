@@ -81,3 +81,42 @@ Modules you have used
 what is scd ?
 What are connectors that doesnt support dbricks and you have encountered ?
 How do you trigger Dbricks pipelines?
+//////////////////////////////////////////////////////  GENPACT  //////////////////////////////////////////////////////////////////
+
+If u have 10 sftp files u have to load to adls how do u do?
+If from sftp 10 parquet and 10 csv how u load?
+If from sftp u have 5 us and 5 canada how u load?
+Why unity catalogue and y not hive metastore. why unity catalogue invented . what problem does it solve?
+What is unity catalogue?
+Data masking code row filter and col mask?
+Code for masking.
+how 70% time and 40%storage reduced (from Resume)
+how u reduced the azure compute cost by 40%(from resume)
+Partition of employee table how u decide which column then write that df to employee table.
+Cache vs persist
+what is IR and what are different types of compute?
+Repartition vs colease
+How u give governance in databricks
+1 100     
+2 
+3 200 
+4 200
+5
+Output : 100 100 200 200 200
+
+If u read 100gb csv file with 10gb configurations . how you read it efficiently.
+Do u know about DAB or CI/CD. how u handle deployment from low to higher enviromnents.
+What are notebook versions?
+Does managed table support ACID transactions.
+Diff between Managed and External tables.
+If a task is assigned to you which would take more time to complete than expected. how do you proceed?
+What is data skew? How do you solve it?
+If a job is running more time than expected what would you do?
+If a code u pushed to prod fails. How do you handle this?
+Do you concentrate on accuracy or task completion.
+If u want to print the department data who runs the notebook . how would you do(HR->HR,IT->IT)
+is_member_of_group()
+What is auto loader and syntax.
+If i write stream syntax for read and write insted of batch. Does this pipeline end?
+what does acid mean?
+
