@@ -109,7 +109,7 @@ Do u know about DAB or CI/CD. how u handle deployment from low to higher envirom
 What are notebook versions?
 Does managed table support ACID transactions.
 Diff between Managed and External tables.
-If a task is assigned to you which would take more time to complete than expected. how do you proceed?
+If a code is taking more time to complete than expected. how do you proceed?
 What is data skew? How do you solve it?
 If a job is running more time than expected what would you do?
 If a code u pushed to prod fails. How do you handle this?
