@@ -120,3 +120,11 @@ What is auto loader and syntax.
 If i write stream syntax for read and write insted of batch. Does this pipeline end?
 what does acid mean?
 
+------------------------------CLIENT---------------------------
+1.since you are working with pharma data.suppose prescription for yuvana is with us and not present with pharma . which property 
+among ACID would have been violated?
+2.suppose with same primary two transactions are coming (8 april,9 april) how would you deal this in incremental load?
+3.what would professional life of yuvana would look like?
+4.Is data security better in azure or Unity Catalogue?
+5.Suppose if i dont want to show my social security number . how can you do this?
+6.would rbac be applied over table level or column level?
