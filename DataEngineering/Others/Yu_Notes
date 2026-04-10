@@ -132,6 +132,7 @@ among ACID would have been violated?
 
 Can you mention the cluster size of job compute you use
 What volume of data do you get on daily basis?
+How do you trigger the pipelines?
 Differenece between optimize and vaccum?
 Can you restore to previous version of delta table after you run vaccum command.
 How are jobs created and where can you see in the ui.
