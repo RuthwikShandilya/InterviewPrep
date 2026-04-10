@@ -128,3 +128,38 @@ among ACID would have been violated?
 4.Is data security better in azure or Unity Catalogue?
 5.Suppose if i dont want to show my social security number . how can you do this?
 6.would rbac be applied over table level or column level?
+//////////////////////////////////////////////////////  LTI MINDTREE  //////////////////////////////////////////////////////////////////
+
+Can you mention the cluster size of job compute you use
+What volume of data do you get on daily basis?
+Differenece between optimize and vaccum?
+Can you restore to previous version of delta table after you run vaccum command.
+How are jobs created and where can you see in the ui.
+What is DAG?
+How can you call one notebook from another. what are other dbutils commands you know
+If a job is long running what would you do?
+What are spark joins that u know?
+Difference between colease and repartition
+How does the DAG deal with wide and narrow transformations. Some wide transformations u know.
+Underneath data format of delta tables.
+Do you know data ware housing. diff btw star vs snowflake schema.
+
+
+Department
+1 HR
+2 ADMIN
+3 DE
+
+sales
+ 101 500 4 april 1
+ 102 20  3 april 1
+ 103 350 4 april 2
+ 104 678 3 april 3
+ 105 333 1 april 1
+ 
+ expected
+ 101 500 above average
+ 102 20  below average
+ 103 350 average
+ 104 678 average
+ 105 333 below average
