@@ -164,3 +164,15 @@ sales
  103 350 average
  104 678 average
  105 333 below average
+
+//////////////////////////////////////////////////////  L&T TS  //////////////////////////////////////////////////////////////////
+
+what are decorators
+why is advantage of snowflake schema over star schema
+if fact table is loaded first than the dimensional table.what is the effect on fact table.
+dictionaries in python
+syntax for udf function.
+Elobrate cron pattern 
+Web activity in ADF
+Have u used function in ADF
+
