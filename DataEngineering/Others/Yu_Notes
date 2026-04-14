@@ -177,3 +177,49 @@ Web activity in ADF
 Have u used function in ADF
 what is databricks run time
 what is python and sparl versions in ur environment
+
+//////////////////////////////////////////////////////  Computonic  //////////////////////////////////////////////////////////////////
+
+raw_data = [
+    "Alice,Engineering,90000",
+    "Bob,Marketing,75000",
+    "Carol,Engineering,-5000",   # invalid salary
+    "Dave,Marketing,80000",
+    "",                           # empty row
+    "Eve,Engineering,85000",
+]
+
+# Output:
+# {
+#   'Engineering': {'avg_salary': 87500.0, 'headcount': 2},
+#   'Marketing':   {'avg_salary': 77500.0, 'headcount': 2}
+# }
+
+df = raw_data.drop.na()
+df1= df2.where(col("salary">0)
+df1.groupBy("Dept").agg(avg("salary").alias("avg_salary"),count("salary").alias("headcount"))
+
+
+user_id	login_date
+U1	2024-01-01
+U1	2024-01-02
+U1	2024-01-03
+U1	2024-01-05
+U1	2024-01-06
+
+I need longest duration the user has logged in .
+u1 -> 3
+
+What is spark context.How is it different from spark session
+How many tasks are created for a job. (acc to no of partitions which would be input/128). why 128?
+what are different types of joins? Which one is costlier.
+If there are two jobs where one we need to read huge data but no transformations. where as in other we need read less data but huge transformations
+what kind of clusters do you use? why photon enabling?.
+AQE does optimize and zorder ?
+How does AQE take Run time statistics?
+Types of resource manager. and whats difference?
+just list the names of optimizations you have done
+What is difference between spark submit and running code in dbricks.
+Different types of files under delta table.What is checkpointing
+Uses of Auto loader instead of normal streaming.
+Why Unity Catalogue what problem does it solve?
