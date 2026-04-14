@@ -223,3 +223,5 @@ What is difference between spark submit and running code in dbricks.
 Different types of files under delta table.What is checkpointing
 Uses of Auto loader instead of normal streaming.
 Why Unity Catalogue what problem does it solve?
+What are advantages of delta lake over data lake.
+Explain Isolation in ACID.
