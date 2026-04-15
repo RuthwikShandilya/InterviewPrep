@@ -128,6 +128,7 @@ among ACID would have been violated?
 4.Is data security better in azure or Unity Catalogue?
 5.Suppose if i dont want to show my social security number . how can you do this?
 6.would rbac be applied over table level or column level?
+
 //////////////////////////////////////////////////////  LTI MINDTREE  //////////////////////////////////////////////////////////////////
 
 Can you mention the cluster size of job compute you use
@@ -225,3 +226,12 @@ Uses of Auto loader instead of normal streaming.
 Why Unity Catalogue what problem does it solve?
 What are advantages of delta lake over data lake.
 Explain Isolation in ACID.
+What do you Know about GC?
+
+//////////////////////////////////////////////////////  LTI MINDTREE  //////////////////////////////////////////////////////////////////
+
+Given a CSV file containing millions of records with columns: user_id, timestamp, and event_type, write a SQL to compute the top 10 users with the highest number of unique event_types within the last 30 days.
+li=[1,'apple', 20.50] --- can you read it in spark dataframe
+What is delta advantages in technical perspective.
+what is Dataskew. how to identify in technical perspective. 
+Unity catalogue how u use in ur project.
