@@ -235,3 +235,24 @@ li=[1,'apple', 20.50] --- can you read it in spark dataframe
 What is delta advantages in technical perspective.
 what is Dataskew. how to identify in technical perspective. 
 Unity catalogue how u use in ur project.
+
+//////////////////////////////////////////////////////  Texplorer  //////////////////////////////////////////////////////////////////
+
+Write a PySpark query to perform an inner join between df1 and df2 on both columns, 
+treating NULLs as equal. That is, if a column has NULL in both DataFrames for the same row, it should be considered a match.
+sales
+region,pid,sales - top 3 products by total sales in each region
+
+//////////////////////////////////////////////////////  LTM  //////////////////////////////////////////////////////////////////
+
+what is difference between data lake,data warehouse and data lake house
+what is difference btw serverless and job compute
+If you delete the data files would the data still be present under the delta table.
+nulls in df1 and df2 on join key. count of joindf if inner,left,right,full
+architecture spark internal
+Unity catalogue limitations.
+limitations of z-order by and alternative or any updates in databricks
+how does delta do the time travel
+have you checked how internally it works or the log of the zorder.
+Do u do the history load and refresh. or How since data gets increased every day . 
+what is explode.
