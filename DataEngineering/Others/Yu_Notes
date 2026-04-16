@@ -228,7 +228,7 @@ What are advantages of delta lake over data lake.
 Explain Isolation in ACID.
 What do you Know about GC?
 
-//////////////////////////////////////////////////////  LTI MINDTREE  //////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////  T Mobile  //////////////////////////////////////////////////////////////////
 
 Given a CSV file containing millions of records with columns: user_id, timestamp, and event_type, write a SQL to compute the top 10 users with the highest number of unique event_types within the last 30 days.
 li=[1,'apple', 20.50] --- can you read it in spark dataframe
