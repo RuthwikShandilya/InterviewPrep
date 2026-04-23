@@ -284,5 +284,8 @@ Can we apply crud operations on the parquet file.
 percentage of records increased from last month to this month.
 if u are loading 100 tables from source to destination which are independent of each other. the pipeline takes much time to complete. how would you solve this.
 and want to update a value into each table.
+what if we are getting new columns from source. using autoloader does the pipeline fail? using mergeschema doesn't this fail?
+difference between python vs pyspark
+If We are having 100 tables how to load this into parquet files incrementally in ADF?
 
 
