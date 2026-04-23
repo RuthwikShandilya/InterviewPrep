@@ -273,3 +273,16 @@ How do you optimize a sql query. if the table conntains billions of records
 How do you generate synthetic data.
 If u want to join two tables to know the unique rows.
 how do u read file from s3
+
+//////////////////////////////////////////////////////  Anbilicks  & Value Momentum  //////////////////////////////////////////////////////////////////
+
+How to reprocess the files from previous 4 days again using auto loader.
+If there is streaming source that u are loading into bronze.There is streaming from bronze to silver. would the update in bronze be identified/reflected in the silver as well?
+df1 contains 1,'a','hyd' and df2 contains 'mumbai','b','1'. performing union would throw error?
+a=[1,2,3,2,1] b =[4,5,2,3,1,3,8]. Get all unique elements from both
+Can we apply crud operations on the parquet file.
+percentage of records increased from last month to this month.
+if u are loading 100 tables from source to destination which are independent of each other. the pipeline takes much time to complete. how would you solve this.
+and want to update a value into each table.
+
+
