@@ -513,4 +513,29 @@ code how u write -- imports,defining configurations,reusable definations,actual 
 
 pipeline running fine - slow today - debug -- spark ui stage which taking more time, are we doing wide transformations --or using 
 partitions having more data -- repartition/skewing,
+------------------------------------------------------------------------------------------------------------
+aniblicks round 2
+name city address
+n1,c1,a1
+n2,null,a2
+n3,c3,null
+n4,null,null
 
+select count(city) from table where city is null
+union
+select count(address) from table where address is null
+
+def countfunc(df):
+
+customer details who have purchased more than 100 dollars in current month.
+customer cid,cname
+order oid,cid,oamount,odate
+  
+
+  
+select * from (
+select sum(o.oamount) as totamount,c.cid,c.cname
+from customer c
+join order o on c.id=c.id
+where month(o.odate)=4 and year(
+group by cid)a where totamount>=100
