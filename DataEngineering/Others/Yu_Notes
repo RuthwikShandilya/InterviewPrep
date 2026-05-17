@@ -289,4 +289,8 @@ difference between python vs pyspark
 If We are having 100 tables how to load this into parquet files incrementally in ADF?
 can we apply cluster by on 5 columns.
 from source how to ignore corrupt files and  load the remining files using autoloader
-
+what if we are getting new columns from source. using autoloader does the pipeline fail? using mergeschema doesn't this fail?
+from source how to ignore corrupt files and  load the remining files using autoloader
+how do you design a pipeline with to run for multiple times a day
+does autoloader run multiple or its continuous
+how do u do encryption in col masking
